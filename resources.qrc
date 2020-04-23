@@ -1,10 +1,14 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>ThreeDimensionalScene.qml</file>
         <file>IronMan.qml</file>
         <file>RenderableEntity.qml</file>
         <file>man.obj</file>
         <file>man.png</file>
+        <file>TextureAlphaMaterial.qml</file>
+    </qresource>
+    <qresource prefix="/shaders">
+        <file>unlittexture.frag</file>
+        <file>unlittexture.vert</file>
     </qresource>
 </RCC>

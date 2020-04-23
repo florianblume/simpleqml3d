@@ -5,30 +5,28 @@ import Qt3D.Extras 2.0
 Entity {
     id: root
 
-    property real x: 0
-    property real y: 0
-    property real z: 0
+    property vector3d position: Qt.vector3d(0, 0, 0)
     property real scale: 1.0
+    property real rotationAngle: 0.0
+    property vector3d rotationAxis: Qt.vector3d(1, 0, 0)
+    property alias source: mesh.source
+    property Material material
 
-    Texture2D{
-        id: texture
-        TextureImage {
-            source: "qrc:/man.png"
-        }
+    components: [ transform, mesh, material ]
+
+    Transform {
+        id: transform
+        scale: root.scale
+        rotation: fromAxisAndAngle(root.rotationAxis, root.rotationAngle)
+        translation: root.position
     }
 
-    //COPY RenderableEntity.qml in your project!!!!!!
-    RenderableEntity{
-        id: chest
-        source: "qrc:/man.obj" //Path to iron man model. You can open it with 3D Builder on Windows 10
-        position: Qt.vector3d(root.x, root.y, root.z)
-        scale:  root.scale
+    Mesh {
+        id: mesh
+        source: "qrc:/man.obj"
+    }
 
-        material: DiffuseMapMaterial {
-            id: material
-            diffuse:  texture
-            specular: Qt.rgba( 0.2, 0.2, 0.2, 1.0 )
-            shininess: 2.0
-        }
+    material: TextureAlphaMaterial {
+        id: material
     }
 }
